@@ -1,0 +1,37 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Kullanıcılar</h1>
+<br />
+<br />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Adı Soyadı</th>
+        <th>E-mail</th>
+        <th>Cinsiyet</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Name @item.Surname</td>
+            <td>@item.Email</td>
+            <td>@item.Gender</td>
+            <td><a href="#" class="btn btn-outline-danger">Sil</a></td>
+            <td><a href="#" class="btn btn-outline-success">Güncelle</a></td>
+            <td><a href="#" class="btn btn-outline-dark">Detaylar</a></td>
+        </tr>
+    }
+</table>
+<a href="/Register/Index/" class="btn btn-outline-info" style="display:inline-block;inline-size :250px">Yeni Üye Kaydı</a>

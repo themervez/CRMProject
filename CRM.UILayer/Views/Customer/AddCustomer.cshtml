@@ -1,0 +1,23 @@
+﻿@model CRM.EntityLayer.Concrete.Customer
+@{
+    ViewData["Title"] = "AddCustomer";
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+}
+<br />
+<h1>Yeni Müşteri Ekleme Sayfası</h1> 
+<br />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<form class="form-group" method="post">
+    <label>Adı</label>
+    <input type="text" asp-for="Name" class="form-control" /> <br />
+    <label>Soyadı</label>
+    <input type="text" asp-for="Surname" class="form-control" /> <br />
+    <label>Telefon</label>
+    <input type="text" asp-for="Phone" class="form-control" /> <br />
+    <label>E-mail</label>
+    <input type="text" asp-for="Email" class="form-control" /> <br />
+    <button class="btn btn-primary">Ekle</button>
+</form>
+
+

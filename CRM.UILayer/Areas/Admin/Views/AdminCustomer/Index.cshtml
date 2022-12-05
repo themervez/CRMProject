@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> @*AJAX için Script*@
+<h1>Müşteri AJAX İşlemleri</h1>
+<br />
+<button type="button" id="btncustomerlist" class="btn btn-outline-dark" style="display:inline-block; inline-size:200px">Müşteri Listesi</button>&nbsp;
+<button type="button" id="btncustomeradd" class="btn btn-outline-primary" style="display:inline-block; inline-size:200px">Müşteri Ekle</button>&nbsp;
+<button type="button" id="btncustomerget" class="btn btn-outline-warning" style="display:inline-block; inline-size:200px">Müşteri Getir</button>&nbsp;
+<button type="button" id="btncustomerdelete" class="btn btn-outline-danger" style="display:inline-block; inline-size:200px">Müşteri Sil</button>&nbsp;
+<button type="button" id="btncustomerupdate" class="btn btn-outline-success" style="display:inline-block; inline-size:200px">Müşteri Güncelle</button>
+<br />
+<br />
+<div id="customerlist">
+
+</div>
+<script>
+    $("#btncustomerlist").click(function () {
+        $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "get",
+            url: "/Admin/AdminCustomer/CustomerList/",
+            success: function (func1) {
+                let values = jQuery.parseJSON(func1); /*Gelen değeri Html Tarafında json a dönüştürdük*/
+                console.log(values);
+            }
+        });
+    })
+
+</script>
+
