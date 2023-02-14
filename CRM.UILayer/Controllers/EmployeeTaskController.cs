@@ -1,5 +1,6 @@
 ﻿using CRM.BusinessLayer.Abstract;
 using CRM.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CRM.UILayer.Controllers
 {
+    [AllowAnonymous]
     public class EmployeeTaskController : Controller
     {
         private readonly IEmployeeTaskService _employeeTaskService;

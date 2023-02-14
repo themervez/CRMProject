@@ -82,6 +82,7 @@ namespace CRM.UILayer
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //For Areas
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

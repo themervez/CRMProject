@@ -1,22 +1,40 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_CRMLayout.cshtml";
 }
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> @*AJAX için Script*@
-<h1>Müşteri AJAX İşlemleri</h1>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> @*Ajax Script*@
+
+<h1>Müşteri Ajax İşlemleri</h1>
 <br />
-<button type="button" id="btncustomerlist" class="btn btn-outline-dark" style="display:inline-block; inline-size:200px">Müşteri Listesi</button>&nbsp;
-<button type="button" id="btncustomeradd" class="btn btn-outline-primary" style="display:inline-block; inline-size:200px">Müşteri Ekle</button>&nbsp;
-<button type="button" id="btncustomerget" class="btn btn-outline-warning" style="display:inline-block; inline-size:200px">Müşteri Getir</button>&nbsp;
-<button type="button" id="btncustomerdelete" class="btn btn-outline-danger" style="display:inline-block; inline-size:200px">Müşteri Sil</button>&nbsp;
-<button type="button" id="btncustomerupdate" class="btn btn-outline-success" style="display:inline-block; inline-size:200px">Müşteri Güncelle</button>
 <br />
+<button type="button" id="btncustomerlist" class="btn btn-outline-dark" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Listesi</button>&nbsp;
+<button type="button" id="btncustomeradd" class="btn btn-outline-primary" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Ekle</button>&nbsp;
+<button type="button" id="btncustomerget" class="btn btn-outline-warning" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Getir</button>&nbsp;
+<button type="button" id="btncustomerdelete" class="btn btn-outline-danger" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Sil</button>&nbsp;
+<button type="button" id="btncustomerupdate" class="btn btn-outline-success" style="width:200px; margin:5px; margin-left:300px; display:inline-block; border-radius:8px">Müşteri Güncelle</button>
+<br /><br />
+
+<div class="form-group">
+    <input type="text" id="txtcustomername" class="form-control" placeholder="Müşteri Adını Giriniz" /><br />
+    <input type="text" id="txtcustomersurname" class="form-control" placeholder="Müşteri Soyadını Giriniz" /><br />
+    <input type="text" id="txtcustomeremail" class="form-control" placeholder="Müşteri E-mailini Giriniz" /><br />
+    <input type="text" id="txtcustomerphone" class="form-control" placeholder="Müşteri Telefonunu Giriniz" /><br />
+</div>
+
+<div class="form-group">
+    <input type="text" id="txtid" class="form-control" placeholder="Aranacak ID değerini giriniz" />
+</div>
 <br />
 <div id="customerlist">
 
 </div>
+<br />
+
+<div id="customergetbyid">
+
+</div>
+
 <script>
     $("#btncustomerlist").click(function () {
         $.ajax({
@@ -27,9 +45,50 @@
             success: function (func1) {
                 let values = jQuery.parseJSON(func1); /*Gelen değeri Html Tarafında json a dönüştürdük*/
                 console.log(values);
+                let tablehtml = "<table class=table table-bordered><tr><th>Müşteri ID</th><th>Müşteri Adı</th><th>Müşteri Soyadı</th><th>Müşteri E-mail</th></tr>";
+                $.each(values, (index, item) => {
+                    tablehtml += `<tr><td>${item.ID}</td><td>${item.Name}</td><td>${item.Surname}</td><td>${item.Email}</td></tr>`
+                });
+                tablehtml += "</table>";
+                $("#customerlist").html(tablehtml);//div customerlist içine verileri yansıtmak için
             }
         });
-    })
-
+    });
+    $("#btncustomeradd").click(function () {
+        let customervalues = {
+            Name: $("#txtcustomername").val(),
+            Surname: $("#txtcustomersurname").val(),
+            Phone: $("#txtcustomerphone").val(),
+            Email: $("#txtcustomeremail").val()
+        };
+        $.ajax({
+            dataType: "json",
+            type: "post",
+            data: customervalues,
+            url: "/Admin/AdminCustomer/AddCustomer/",
+            success: function (func2) {
+                let result = jQuery.parseJSON(func2);
+                alert("Müşteri başarılı bir şekilde eklendi!");
+            }
+        });
+    });
+    $("#btncustomerget").click(x => {
+        let id = $("#txtid").val();
+        $.ajax({
+            contentType: "application/json",//Veri listelemesi için kullanılacak
+            dataType: "json",
+            type: "get",
+            url: "/Admin/AdminCustomer/GetById/",
+            data: { ID: id },
+            success: function (func3) {
+                let result = jQuery.parseJSON(func3);
+                console.log(result);
+                let tablehtml2 = `<table class=table table-bordered><tr><th>Müşteri ID</th>
+                    <th>Müşteri Adı</th><th>Müşteri Soyadı</th></tr><tr><td>${result.ID}
+                    </td><td>${result.Name}</td><td>${result.Surname}</td></tr>
+                    </table>`;
+                $("#customergetbyid").html(tablehtml2);//div customergetbyid içine veriyi yansıtmak için
+            }
+        });
+    });
 </script>
-

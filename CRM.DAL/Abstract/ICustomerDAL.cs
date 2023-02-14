@@ -9,10 +9,5 @@ namespace CRM.DAL.Abstract
 {
     public interface ICustomerDAL : IGenericDAL<Customer>
     {
-        //void Insert(Customer customer);
-        //void Delete(Customer customer);
-        //void Update(Customer customer);
-        //List<Customer> GetList();
-        //Customer GetByID(int id);
     }
 }

@@ -29,15 +29,21 @@ namespace CRM.UILayer.Areas.Admin.Controllers
         //Sayfa yüklendikten sonra bir post işlemi olmadan butona tıklandığı zaman verilerin listelenmesi işlemi
         public IActionResult CustomerList()
         {
-            var jsonCustomers = JsonConvert.SerializeObject(_customerService.TGetList());
-            return Json(jsonCustomers);//Birleştirme, dizi haline getirme işlemi için kulandık json'ı
+            var jsonCustomers = JsonConvert.SerializeObject(_customerService.TGetList());//Gelen verileri json formatına dönüştürdük
+            return Json(jsonCustomers);
         }
+
         [HttpPost]
         public IActionResult AddCustomer(Customer customer)
         {
             _customerService.TInsert(customer);//Veri tabanına ekledik
-            var values = JsonConvert.SerializeObject(customer);//AJAX' ı kullanabilmek için bu ilemi yaptık,Ekleme işlemini veri tabanına AJAX üzerinden göndermemizi sağlayacak
+            var values = JsonConvert.SerializeObject(customer);//Ajax'a ait değerleri kullanabilmek için,Ekleme işlemini veri tabanına Ajax üzerinden göndermemizi sağlayacak
             return Json(values);
+        }
+        public IActionResult GetById(int ID)
+        {
+            var customer = JsonConvert.SerializeObject(_customerService.TGetById(ID));
+            return Json(customer);
         }
     }
 }

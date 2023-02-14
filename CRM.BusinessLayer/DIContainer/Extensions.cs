@@ -30,6 +30,9 @@ namespace CRM.BusinessLayer.DIContainer
 
             services.AddScoped<IMessageService, MessageManager>();
             services.AddScoped<IMessageDAL, EFMessageDAL>();
+
+            services.AddScoped<ICustomerService, CustomerManager>();
+            services.AddScoped<ICustomerDAL, EFCustomerDAL>();
         }
     }
 }
