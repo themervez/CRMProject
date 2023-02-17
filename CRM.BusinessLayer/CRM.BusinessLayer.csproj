@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRM.DAL\CRM.DAL.csproj" />
+    <ProjectReference Include="..\CRM.DTOLayer\CRM.DTOLayer.csproj" />
     <ProjectReference Include="..\CRM.EntityLayer\CRM.EntityLayer.csproj" />
   </ItemGroup>
 

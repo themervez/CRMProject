@@ -1,0 +1,36 @@
+﻿@model ContactAddDTO
+@{
+    ViewData["Title"] = "AddContact";
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+}
+
+<br />
+<h1>İletişim Paneli</h1>
+<br />
+<br />
+<br />
+<form method="post">
+    <label>Adınız</label>
+    <input type="text" class="form-control" asp-for="Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br />
+    <br />
+    <label>E-mail</label>
+    <input type="text" class="form-control" asp-for="Email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+    <br />
+    <br />
+    <label>Konu</label>
+    <input type="text" class="form-control" asp-for="Subject" />
+    <span asp-validation-for="Subject" class="text-danger"></span>
+    <br />
+    <br />
+    <label>Mesajınız</label>
+    <input type="text" class="form-control" asp-for="Content" />
+    <span asp-validation-for="Content" class="text-danger"></span>
+    <br />
+    <br />
+    <button class="btn btn-primary">Mesajı Gönder</button>
+
+</form>
+

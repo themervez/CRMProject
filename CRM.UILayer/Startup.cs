@@ -6,6 +6,7 @@ using CRM.DAL.Concrete;
 using CRM.DAL.EF;
 using CRM.EntityLayer.Concrete;
 using CRM.UILayer.Models;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +38,11 @@ namespace CRM.UILayer
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
-            services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(Startup));
+
+            services.CustomizeValidator();
+
+            services.AddControllersWithViews().AddFluentValidation();//*
 
             services.AddMvc(config => /*Kullanýcýnýn sisteme giriþ yapmasýný zorunlu býrakmak için yapýlan konfigürasyon*/
             {
