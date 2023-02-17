@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+}
+<br />
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<button type="button" id="btn1" style="width:200px; margin:5px; display:inline-block; border-radius:8px" class="btn btn-outline-warning">Button 1</button>
+<br />
+<button type="button" id="btn2" style="width:200px; margin:5px; display:inline-block; border-radius:8px" class="btn btn-outline-primary">Button 2</button>
+<br />
+
+<script>
+    $("#btn1").click(function () {
+        swal("Hello World!");
+    });
+    $("#btn2").click(function () {
+        swal("Good job!", "You clicked the button!", "success");
+    });
+</script>

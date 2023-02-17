@@ -8,22 +8,31 @@
 <h1>Müşteri Ajax İşlemleri</h1>
 <br />
 <br />
-<button type="button" id="btncustomerlist" class="btn btn-outline-dark" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Listesi</button>&nbsp;
-<button type="button" id="btncustomeradd" class="btn btn-outline-primary" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Ekle</button>&nbsp;
-<button type="button" id="btncustomerget" class="btn btn-outline-warning" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Getir</button>&nbsp;
-<button type="button" id="btncustomerdelete" class="btn btn-outline-danger" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Sil</button>&nbsp;
-<button type="button" id="btncustomerupdate" class="btn btn-outline-success" style="width:200px; margin:5px; margin-left:300px; display:inline-block; border-radius:8px">Müşteri Güncelle</button>
+<button type="button" id="btncustomerlist" class="btn btn-outline-dark" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Listesi</button>
+<button type="button" id="btncustomeradd" class="btn btn-outline-primary" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Ekle</button>
+<button type="button" id="btncustomerget" class="btn btn-outline-warning" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Getir</button>
+<button type="button" id="btncustomerdelete" class="btn btn-outline-danger" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Müşteri Sil</button>
+<button type="button" id="btncustomerupdate" class="btn btn-outline-success" style="width:200px; margin:10px; margin-left:300px; display:inline-block; border-radius:8px">Müşteri Güncelle</button>
 <br /><br />
-
 <div class="form-group">
+    <h4>Müşteri Ekleme</h4>
+    <br />
     <input type="text" id="txtcustomername" class="form-control" placeholder="Müşteri Adını Giriniz" /><br />
     <input type="text" id="txtcustomersurname" class="form-control" placeholder="Müşteri Soyadını Giriniz" /><br />
-    <input type="text" id="txtcustomeremail" class="form-control" placeholder="Müşteri E-mailini Giriniz" /><br />
+    <input type="text" id="txtcustomeremail" class="form-control" placeholder="Müşteri E-mail Giriniz" /><br />
     <input type="text" id="txtcustomerphone" class="form-control" placeholder="Müşteri Telefonunu Giriniz" /><br />
 </div>
 
 <div class="form-group">
+    <h4>Müşteri Arama</h4>
+    <br />
     <input type="text" id="txtid" class="form-control" placeholder="Aranacak ID değerini giriniz" />
+</div>
+<br />
+<div>
+    <h4>Müşteri Sil</h4>
+    <br />
+    <input type="text" id="txtdeleteid" class="form-control" placeholder="Silinecek ID değerini giriniz" />
 </div>
 <br />
 <div id="customerlist">
@@ -33,6 +42,17 @@
 
 <div id="customergetbyid">
 
+</div>
+<br />
+
+<div class="form-group">
+    <h4>Müşteri Güncelleme</h4>
+    <br />
+    <input type="text" id="txteditid" class="form-control" placeholder="Müşteri ID Giriniz" /><br />
+    <input type="text" id="txtname" class="form-control" placeholder="Müşteri Adını Giriniz" /><br />
+    <input type="text" id="txtsurname" class="form-control" placeholder="Müşteri Soyadını Giriniz" /><br />
+    <input type="text" id="txtemail" class="form-control" placeholder="Müşteri E-Mail Giriniz" /><br />
+    <input type="text" id="txtphone" class="form-control" placeholder="Müşteri Telefonunu Giriniz" /><br />
 </div>
 
 <script>
@@ -58,8 +78,8 @@
         let customervalues = {
             Name: $("#txtcustomername").val(),
             Surname: $("#txtcustomersurname").val(),
-            Phone: $("#txtcustomerphone").val(),
-            Email: $("#txtcustomeremail").val()
+            Email: $("#txtcustomeremail").val(),
+            Phone: $("#txtcustomerphone").val()
         };
         $.ajax({
             dataType: "json",
@@ -91,4 +111,35 @@
             }
         });
     });
+    $("#btncustomerdelete").click(x => {
+        let id = $("#txtdeleteid").val();
+        $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "get",
+            url: "/Admin/AdminCustomer/DeleteCustomer/" + id,
+            success: function (func4) {
+                alert("Müşteri başarılı bir şekilde silindi");
+            }
+        });
+    });
+    $("#btncustomerupdate").click(function () {
+        let values = {
+            ID: $("#txteditid").val(),
+            Name: $("#txtname").val(),
+            Surname: $("#txtsurname").val(),
+            Email: $("#txtemail").val(),
+            Phone: $("#txtphone").val()
+        };
+        $.ajax({
+            dataType: "json",
+            type: "get",
+            data: values,
+            url: "/Admin/AdminCustomer/UpdateCustomer/",
+            success: function (func5) {
+                alert("Müşteri başarılı bir şekilde güncellendi!");
+            }
+        });
+    });
+
 </script>

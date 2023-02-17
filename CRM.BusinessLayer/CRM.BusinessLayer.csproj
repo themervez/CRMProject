@@ -29,4 +29,9 @@
     <ProjectReference Include="..\CRM.EntityLayer\CRM.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValidationRules\AppUserValidation\" />
+    <Folder Include="ValidationRules\CustomerValidation\" />
+  </ItemGroup>
+
 </Project>
