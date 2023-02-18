@@ -28,7 +28,8 @@ namespace CRM.UILayer.Controllers
         public async Task <IActionResult> Index(AppUser appUser)
         {
             var result = await _signInManager.PasswordSignInAsync(appUser.UserName, appUser.PasswordHash, false, true);
-            if(result.Succeeded)
+
+            if(result.Succeeded && appUser.EmailConfirmed==true)//E-mail onayı şartını da ekledik
             {
                 return RedirectToAction("Index", "User");
             }
@@ -36,3 +37,11 @@ namespace CRM.UILayer.Controllers
         }
     }
 }
+/*
+ 1)Kullanıcı tablosuna 1 tane daha sütun ekleyelim. Bu sütun rastgele 6 haneli bir karakter alsın, bu 6 haneli karakter kullanıcının sisteme giriş yaptığı e-mail adresine body kısmı üzerinden iletilsin
+2)Login sayfasından önce bir sayfa daha açılsın, bu sayfa e-mail confirmed işlemini karşılıyor olacak. Eğer kullanıcı e-mail adresine gelen veriyi doğru şekilde input a girerse,
+input: e-mail adresi
+input: kod
+
+eşleşme sonrasında EmailConfirmed sütunu true olarak değişsin
+ */

@@ -7,12 +7,16 @@
   <ItemGroup>
     <Compile Remove="Areas\Admin\Data\**" />
     <Compile Remove="Areas\Admin\Models\**" />
+    <Compile Remove="Areas\Employee\Data\**" />
     <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="Areas\Admin\Models\**" />
+    <Content Remove="Areas\Employee\Data\**" />
     <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="Areas\Employee\Data\**" />
     <None Remove="Areas\Admin\Data\**" />
     <None Remove="Areas\Admin\Models\**" />
+    <None Remove="Areas\Employee\Data\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Employee\Data\" />
     <Folder Include="wwwroot\PdfReports\" />
     <Folder Include="wwwroot\UserImages\" />
   </ItemGroup>

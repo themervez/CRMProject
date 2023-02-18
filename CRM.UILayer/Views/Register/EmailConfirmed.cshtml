@@ -1,0 +1,20 @@
+﻿@model AppUser
+@{
+    Layout = "~/Views/Shared/_CRMLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<form method="post">
+    <div class="col-6">
+        <h2>E-mail Confirmation</h2>
+        <label>E-mail</label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <br />
+        <label>E-mail Confirm Code</label>
+        <input type="text" asp-for="EmailCode" class="form-control" />
+        <br />
+        <button type="submit" class="btn btn-outline-success">Confirm</button>
+    </div>
+</form>
