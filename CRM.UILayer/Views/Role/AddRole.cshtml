@@ -7,11 +7,14 @@
 <h1>Rol Ekleme Sayfası</h1>
 <br />
 <form method="post">
+    <div class="col-6">
 <label>Rol Adı</label>
+    <br />
     <br />
     <input type="text" asp-for="RoleName" class="form-control" />
     <span class="text-danger" asp-validation-for="RoleName"></span>
     <br />
     <button class="btn btn-warning">Rolü Ekle</button>
+    </div>
 </form>
 

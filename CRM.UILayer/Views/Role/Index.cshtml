@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_CRMLayout.cshtml";
+    int count = 0;
 }
 
 <h1>Rol Listesi</h1>
@@ -11,14 +12,17 @@
         <th>#</th>
         <th>Rol Adı</th>
         <th>Rol Sil</th>
+        <th>Rol Güncelle</th>
     </tr>
     @foreach (var item in Model)
     {
+        count ++;
         <tr>
-            <td>@item.Id</td>
+            <td>@count</td>
             <td>@item.Name</td>
-            <td><a href="/Role/DeleteRole/@item.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Role/DeleteRole/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+            <td><a href="/Role/UpdateRole/@item.Id" class="btn btn-outline-warning">Güncelle</a></td>
         </tr>
     }
 </table>
-<a href="/Role/AddRole/" class="btn btn-primary">Yeni Rol Girişi</a>
+<a href="/Role/AddRole/" class="btn btn-success" style="width:200px; margin:5px; display:inline-block; border-radius:8px">Yeni Rol Girişi</a>
